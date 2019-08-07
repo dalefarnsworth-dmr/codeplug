@@ -31,7 +31,7 @@ import (
 	"strconv"
 	"strings"
 
-	l "github.com/dalefarnsworth/codeplug/debug"
+	l "github.com/dalefarnsworth-dmr/debug"
 )
 
 // A Record represents a record within a Codeplug.

@@ -36,7 +36,7 @@ import (
 	"time"
 	"unicode/utf8"
 
-	l "github.com/dalefarnsworth/codeplug/debug"
+	l "github.com/dalefarnsworth-dmr/debug"
 )
 
 const InvalidValueString = "=INVALID="

@@ -43,8 +43,8 @@ import (
 	"time"
 	"unicode"
 
-	l "github.com/dalefarnsworth/codeplug/debug"
-	"github.com/dalefarnsworth/codeplug/dfu"
+	l "github.com/dalefarnsworth-dmr/debug"
+	"github.com/dalefarnsworth-dmr/dfu"
 	"github.com/tealeg/xlsx"
 )
 
