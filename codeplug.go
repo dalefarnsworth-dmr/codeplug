@@ -45,7 +45,7 @@ import (
 
 	l "github.com/dalefarnsworth-dmr/debug"
 	"github.com/dalefarnsworth-dmr/dfu"
-	"github.com/tealeg/xlsx"
+	"github.com/tealeg/xlsx/v3"
 )
 
 // FileType tells whether the codeplug is an rdt file or a bin file.
@@ -2142,30 +2142,40 @@ func (cp *Codeplug) parseXLSXFile(iRdr io.Reader) []*parsedRecord {
 	for _, sheet := range file.Sheets {
 		rTypeName := sheet.Name
 
-		headerCells := sheet.Rows[0].Cells
-		fTypeNames := make([]string, len(headerCells))
-		for i, cell := range headerCells {
-			fTypeNames[i] = cell.String()
-		}
-		for index, row := range sheet.Rows[1:] {
+		var fTypeNames []string
+
+		index := 0
+		sheet.ForEachRow(func(row *xlsx.Row) error {
+			if len(fTypeNames) == 0 {
+				row.ForEachCell(func(cell *xlsx.Cell) error {
+					fTypeNames = append(fTypeNames, cell.String())
+					return nil
+				})
+				return nil
+			}
 			pRecord := parsedRecord{
 				name:  rTypeName,
 				index: index,
 			}
 			var parFields []*parsedField
-			for index, cell := range row.Cells {
+			colIndex := 0
+			row.ForEachCell(func(cell *xlsx.Cell) error {
 				strs := cell.String()
 				for _, str := range strings.Split(strs, "\n") {
 					parField := parsedField{
-						name:  fTypeNames[index],
+						name:  fTypeNames[colIndex],
 						value: str,
 					}
 					parFields = append(parFields, &parField)
 				}
 				pRecord.pFields = parFields
-			}
+				colIndex++
+				return nil
+			})
 			pRecords = append(pRecords, &pRecord)
-		}
+			index++
+			return nil
+		})
 	}
 
 	return pRecords
