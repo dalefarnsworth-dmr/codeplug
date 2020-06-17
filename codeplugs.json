@@ -524,6 +524,7 @@
         "GsDisableAllTones",
         "GsChFreeIndicationTone",
         "GsTalkPermitTone",
+        "GsKeypadTones",
         "GsCallAlertToneDuration",
         "GsScanDigitalHangTime",
         "GsScanAnalogHangTime",

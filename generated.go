@@ -1295,6 +1295,7 @@ var riGeneralSettings_uv380 = recordInfo{
 		&fiGsDisableAllTones,
 		&fiGsChFreeIndicationTone,
 		&fiGsTalkPermitTone,
+		&fiGsKeypadTones,
 		&fiGsCallAlertToneDuration,
 		&fiGsScanDigitalHangTime,
 		&fiGsScanAnalogHangTime,
