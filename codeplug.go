@@ -2160,18 +2160,34 @@ func (cp *Codeplug) parseXLSXFile(iRdr io.Reader) []*parsedRecord {
 			var parFields []*parsedField
 			colIndex := 0
 			row.ForEachCell(func(cell *xlsx.Cell) error {
-				strs := cell.String()
-				for _, str := range strings.Split(strs, "\n") {
-					parField := parsedField{
-						name:  fTypeNames[colIndex],
-						value: str,
-					}
-					parFields = append(parFields, &parField)
+				str := cell.String()
+				fType := fTypeNames[colIndex]
+				parField := parsedField{
+					name:  fType,
+					value: str,
 				}
-				pRecord.pFields = parFields
+				parFields = append(parFields, &parField)
 				colIndex++
 				return nil
 			})
+
+			// Remove trailing blank fields in a fieldList
+			fLen := len(parFields)
+			if fLen > 2 {
+				listFType := parFields[fLen-2].name
+				for i := fLen - 1; i >= 0; i-- {
+					parField := parFields[i]
+					if parField.name != listFType {
+						break
+					}
+					if parField.value != "" {
+						break
+					}
+					parFields = parFields[:i]
+				}
+			}
+
+			pRecord.pFields = parFields
 			pRecords = append(pRecords, &pRecord)
 			rowIndex++
 			return nil
