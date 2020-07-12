@@ -668,6 +668,7 @@ func (cp *Codeplug) SaveAs(filename string) error {
 // The state of the codeplug is not changed, so this
 // is useful for use by an autosave function.
 func (cp *Codeplug) SaveToFile(filename string) (err error) {
+
 	cp.Valid()
 
 	cp.setLastProgrammedTime(time.Now())
@@ -675,6 +676,14 @@ func (cp *Codeplug) SaveToFile(filename string) (err error) {
 	cp.store()
 
 	dir, base := filepath.Split(filename)
+	if dir == "" {
+		var err error
+		dir, err = os.Getwd()
+		if err != nil {
+			return err
+		}
+	}
+
 	tmpFile, err := ioutil.TempFile(dir, base)
 	if err != nil {
 		return err
