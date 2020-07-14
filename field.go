@@ -156,6 +156,11 @@ func (f Field) String() string {
 	return f.value.getString(&f)
 }
 
+// GetString returns the fields value as a string, even if value is invalid.
+func (f Field) GetString() string {
+	return f.value.getString(&f)
+}
+
 // SetString set the string's value from the given string, recording a change.
 func (f *Field) SetString(str string) error {
 	previousString := f.String()

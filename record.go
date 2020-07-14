@@ -611,7 +611,7 @@ func (r *Record) RemoveField(f *Field) {
 		}
 	}
 	if index < 0 {
-		l.Fatal("RemoveField: bad field")
+		l.Fatal("RemoveField: bad field", f.String(), f.GetString())
 	}
 
 	deleteField(&fields, index)
@@ -658,6 +658,17 @@ func (r *Record) FindFieldByName(fType FieldType, name string) *Field {
 		}
 	}
 	return nil
+}
+
+func (r *Record) FindFieldsByName(fType FieldType, name string) []*Field {
+	foundFields := make([]*Field, 0)
+	fields := (*r.fDesc)[fType].fields
+	for _, f := range fields {
+		if f.String() == name {
+			foundFields = append(foundFields, f)
+		}
+	}
+	return foundFields
 }
 
 func (r *Record) HasFieldType(fType FieldType) bool {
