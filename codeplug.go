@@ -225,10 +225,6 @@ func (cp *Codeplug) Load(typ string, freqRange string) error {
 
 		cp.AddMissingFields()
 
-		if _, warning := err.(Warning); warning {
-			err = nil
-		}
-
 		if err != nil {
 			return err
 		}
@@ -1866,6 +1862,12 @@ func (cp *Codeplug) ExportTextOneLineRecords(filename string) (err error) {
 func (cp *Codeplug) importText(reader io.Reader) error {
 	deferValues := false
 	records, _, err := cp.ParseRecords(reader, deferValues)
+	if err != nil {
+		if _, warning := err.(Warning); !warning {
+			return err
+		}
+	}
+
 	err = cp.storeParsedRecords(records)
 	if err != nil {
 		return err
@@ -1947,7 +1949,9 @@ func (cp *Codeplug) importJSON(filename string) error {
 	deferValues := false
 	records, _, err := cp.parsedFileToRecs(pRecs, deferValues)
 	if err != nil {
-		return err
+		if _, warning := err.(Warning); !warning {
+			return err
+		}
 	}
 
 	err = cp.storeParsedRecords(records)
@@ -2115,7 +2119,9 @@ func (cp *Codeplug) importXLSX(filename string) error {
 	deferValues := false
 	records, _, err := cp.parsedFileToRecs(pRecs, deferValues)
 	if err != nil {
-		return err
+		if _, warning := err.(Warning); !warning {
+			return err
+		}
 	}
 
 	err = cp.storeParsedRecords(records)
