@@ -2573,8 +2573,8 @@
     {
       "typeName": "Call Type",
       "type": "DcCallType",
-      "bitOffset": 27,
-      "bitSize": 5,
+      "bitOffset": 30,
+      "bitSize": 2,
       "defaultValue": "Group",
       "valueType": "callType",
       "indexedStrings": [
