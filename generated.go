@@ -387,6 +387,8 @@ var codeplugInfos = []*CodeplugInfo{
 	&cpMDUV390,
 	&cpRT3S,
 	&cpMD2017,
+	&cpMD9600,
+	&cpRT90,
 	&cpRT82,
 	&cpRT84,
 }
@@ -626,6 +628,64 @@ var cpRT3S = CodeplugInfo{
 
 var cpMD2017 = CodeplugInfo{
 	Type: "MD-2017",
+	Models: []string{
+		"2017",
+	},
+	Ext:           "rdt",
+	RdtSize:       852533,
+	HeaderSize:    549,
+	TrailerOffset: 262693,
+	TrailerSize:   16,
+	RecordInfos: []*recordInfo{
+		&riBasicInformation_uv380,
+		&riGeneralSettings_md2017,
+		&riMenuItems,
+		&riRadioButtons_md2017,
+		&riButtonDefinitions,
+		&riOneTouch,
+		&riNumberKey,
+		&riTextMessages,
+		&riPrivacySettings,
+		&riContacts_uv380,
+		&riGroupLists,
+		&riZones_uv380,
+		&riScanLists_uv380,
+		&riChannels_uv380,
+		&riGPSSystems,
+	},
+}
+
+var cpMD9600 = CodeplugInfo{
+	Type: "MD-9600",
+	Models: []string{
+		"2017",
+	},
+	Ext:           "rdt",
+	RdtSize:       852533,
+	HeaderSize:    549,
+	TrailerOffset: 262693,
+	TrailerSize:   16,
+	RecordInfos: []*recordInfo{
+		&riBasicInformation_uv380,
+		&riGeneralSettings_md2017,
+		&riMenuItems,
+		&riRadioButtons_md2017,
+		&riButtonDefinitions,
+		&riOneTouch,
+		&riNumberKey,
+		&riTextMessages,
+		&riPrivacySettings,
+		&riContacts_uv380,
+		&riGroupLists,
+		&riZones_uv380,
+		&riScanLists_uv380,
+		&riChannels_uv380,
+		&riGPSSystems,
+	},
+}
+
+var cpRT90 = CodeplugInfo{
+	Type: "RT90",
 	Models: []string{
 		"2017",
 	},
@@ -1111,6 +1171,7 @@ var riGeneralSettings_md2017 = recordInfo{
 		&fiGsDisableAllTones,
 		&fiGsChFreeIndicationTone,
 		&fiGsTalkPermitTone,
+		&fiGsKeypadTones,
 		&fiGsCallAlertToneDuration,
 		&fiGsScanDigitalHangTime,
 		&fiGsScanAnalogHangTime,
@@ -2904,8 +2965,8 @@ var fiDcCallType = fieldInfo{
 	fType:        FtDcCallType,
 	typeName:     "Call Type",
 	max:          1,
-	bitOffset:    27,
-	bitSize:      5,
+	bitOffset:    30,
+	bitSize:      2,
 	valueType:    VtCallType,
 	defaultValue: "Group",
 	indexedStrings: &[]IndexedString{

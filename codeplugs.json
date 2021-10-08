@@ -270,6 +270,62 @@
       ]
     },
     {
+      "type": "MD-9600",
+      "models": [
+        "2017"
+      ],
+      "ext": "rdt",
+      "rdtSize": 852533,
+      "headerSize": 549,
+      "trailerOffset": 262693,
+      "trailerSize": 16,
+      "recordTypes": [
+        "BasicInformation_uv380",
+        "GeneralSettings_md2017",
+        "MenuItems",
+        "RadioButtons_md2017",
+        "ButtonDefinitions",
+        "OneTouch",
+        "NumberKey",
+        "TextMessages",
+        "PrivacySettings",
+        "Contacts_uv380",
+        "GroupLists",
+        "Zones_uv380",
+        "ScanLists_uv380",
+        "Channels_uv380",
+        "GPSSystems"
+      ]
+    },
+    {
+      "type": "RT90",
+      "models": [
+        "2017"
+      ],
+      "ext": "rdt",
+      "rdtSize": 852533,
+      "headerSize": 549,
+      "trailerOffset": 262693,
+      "trailerSize": 16,
+      "recordTypes": [
+        "BasicInformation_uv380",
+        "GeneralSettings_md2017",
+        "MenuItems",
+        "RadioButtons_md2017",
+        "ButtonDefinitions",
+        "OneTouch",
+        "NumberKey",
+        "TextMessages",
+        "PrivacySettings",
+        "Contacts_uv380",
+        "GroupLists",
+        "Zones_uv380",
+        "ScanLists_uv380",
+        "Channels_uv380",
+        "GPSSystems"
+      ]
+    },
+    {
       "type": "RT82",
       "models": [
         "2017"
