@@ -2176,12 +2176,15 @@ func (cp *Codeplug) parseXLSXFile(iRdr io.Reader) []*parsedRecord {
 			colIndex := 0
 			row.ForEachCell(func(cell *xlsx.Cell) error {
 				str := cell.String()
-				fType := fTypeNames[colIndex]
-				parField := parsedField{
-					name:  fType,
-					value: str,
+				// Skip empty fields
+				if len(str) > 0 {
+					fType := fTypeNames[colIndex]
+					parField := parsedField{
+						name:  fType,
+						value: str,
+					}
+					parFields = append(parFields, &parField)
 				}
-				parFields = append(parFields, &parField)
 				colIndex++
 				return nil
 			})
