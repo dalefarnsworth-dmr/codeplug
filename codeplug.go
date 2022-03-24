@@ -2093,9 +2093,14 @@ func (cp *Codeplug) ExportXLSX(filename string) error {
 			row = sheet.AddRow()
 			for _, fType := range r.FieldTypes() {
 				fields := r.Fields(fType)
-				for _, f := range fields {
+				for i := 0; i < (*r.fDesc)[fType].max; i++ {
+					val := ""
+					if i < len(fields) {
+						val = fields[i].String()
+					}
+
 					cell = row.AddCell()
-					cell.Value = f.String()
+					cell.Value = val
 				}
 			}
 		}
